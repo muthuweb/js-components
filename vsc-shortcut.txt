@@ -1,0 +1,13 @@
+ctrl + x before the line of code to delete/cut the lines
+ctrl + c before the line of code to copy the lines
+
+
+Move UP/Down a line/selected line:
+alt+arrow-down
+
+Duplicate a line/selected line:
+alt+shift+arrow-down
+
+
+To find function/line of code/declaration:
+ctrl+shift+o
