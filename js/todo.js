@@ -18,11 +18,18 @@ function newElement(elementName, className = 0) {
   return elem;
 }
 
-function appendItem(value) {
+function appendItem(value, id, state) {
   const newItem = newElement("li", "list-group-item");
   toListItem.appendChild(newItem);
 
+  const checkBox = newElement("input", "form-check-input me-2");
+  checkBox.setAttribute("id", "item-" + id);
+  checkBox.setAttribute("type", "checkbox");
+  checkBox.checked = state;
+  newItem.appendChild(checkBox);
+
   const newItemName = newElement("label", "form-check-label");
+  newItemName.setAttribute("for", "item-" + id);
   newItem.appendChild(newItemName);
   newItemName.append(value);
 
@@ -66,7 +73,7 @@ toDoForm.addEventListener("submit", (event) => {
 });
 
 if (todoItems) {
-  todoItems.forEach((list) => appendItem(list.item));
+  todoItems.forEach((list) => appendItem(list.item, list.id, list.done));
 }
 
 function displayList(state) {
@@ -83,10 +90,21 @@ toListItem.addEventListener("click", function (event) {
   }
 });
 
+toListItem.addEventListener("change", function (event) {
+  let parent = event.target.closest(".list-group-item");
+  let currentData = parent.querySelector("label").innerText;
+  let index = todoItems.findIndex((list) => list.item === currentData);
+
+  let state = event.target.checked;
+
+  todoItems[index].done = state;
+  localStorage.setItem(lsKey, JSON.stringify(todoItems));
+});
+
 function removeItem(event) {
   let parent = event.target.closest(".list-group-item");
-  let currentData = parent.firstChild.innerText;
-  let index = todoItems.indexOf(currentData);
+  let currentData = parent.querySelector("label").innerText;
+  let index = todoItems.findIndex((list) => list.item === currentData);
 
   parent.remove();
   todoItems.splice(index, 1);
