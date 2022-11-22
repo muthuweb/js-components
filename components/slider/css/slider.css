@@ -1,0 +1,221 @@
+.slider {
+  /* display: none; */
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* position relative and z-index fix webkit rendering fonts issue */
+  position: relative;
+  z-index: 1;
+}
+.slider .slider__list {
+  position: relative;
+  -ms-touch-action: pan-Y;
+  touch-action: manipulation;
+  -moz-backface-visibility: hidden;
+  /* fix firefox animation glitch */
+  transition: all 0.25s ease 0s;
+}
+.slider .slider__list:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.slider .slider__wrap {
+  position: relative;
+  overflow: hidden;
+  /* fix for flashing background */
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.slider .slider__wrap,
+.slider .slider__item {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+}
+.slider .slider__item {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+.slider .slider__item img {
+  display: block;
+  width: 100%;
+}
+.slider .slider__nav.disabled,
+.slider .slider__dots.disabled {
+  display: none;
+}
+.slider .slider__nav .slider__prev,
+.slider .slider__nav .slider__next,
+.slider .slider__dot {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.slider .slider__nav button.slider__prev,
+.slider .slider__nav button.slider__next,
+.slider button.slider__dot {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+}
+.slider.slider__loaded {
+  display: block;
+}
+.slider.slider__loading {
+  opacity: 0;
+  display: block;
+}
+.slider.slider__hidden {
+  opacity: 0;
+}
+.slider.slider__refresh .slider__item {
+  visibility: hidden;
+}
+.slider.slider__drag .slider__item {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.slider.slider__grab {
+  cursor: move;
+  cursor: grab;
+}
+.slider.slider__rtl {
+  direction: rtl;
+}
+.slider.slider__rtl .slider__item {
+  float: right;
+}
+
+/* No Js */
+.no-js .slider {
+  display: block;
+}
+
+/*
+ *  Owl Carousel - Animate Plugin
+ */
+.slider .animated {
+  animation-duration: 1000ms;
+  animation-fill-mode: both;
+}
+
+.slider .slider__animated-in {
+  z-index: 0;
+}
+
+.slider .slider__animated-out {
+  z-index: 1;
+}
+
+.slider .fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/*
+ * 	Owl Carousel - Auto Height Plugin
+ */
+.slider__height {
+  transition: height 500ms ease-in-out;
+}
+
+.slider .slider__dots,
+.slider .slider__nav {
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.slider .slider__nav {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+.slider .slider__nav [class*="slider__"] {
+  color: #fff;
+  font-size: 70px !important;
+  padding: 4px 7px;
+  background: #d6d6d6;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+      pointer-events: auto;
+}
+.slider .slider__nav [class*="slider__"]:hover {
+  background: #869791;
+  color: #fff;
+  text-decoration: none;
+}
+.slider .slider__nav .disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.slider .slider__nav.disabled + .slider__dots {
+  margin-top: 10px;
+}
+.slider .slider__dots .slider__dot {
+  display: inline-block;
+  zoom: 1;
+  margin: 10px;
+}
+.slider .slider__dots .slider__dot span {
+  width: 10px;
+  height: 10px;
+  background: #d6d6d6;
+  display: block;
+  -webkit-backface-visibility: visible;
+  transition: opacity 0.2s ease;
+  border-radius: 30px;
+}
+.slider .slider__dots .slider__dot.active span,
+.slider .slider__dots .slider__dot:hover span {
+  background: #000;
+}
+
+.slider__outer {
+  position: relative;
+}
+
+/* Remove it later */
+.slider__item .item {
+  background-color: #ddd;
+  text-align: center;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
