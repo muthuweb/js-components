@@ -1,1 +1,1 @@
-# todo - Testing js App
+# js-components - Testing js App
