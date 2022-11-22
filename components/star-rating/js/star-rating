@@ -1,0 +1,37 @@
+/*
+ * Creates star rating functionality
+ * @param el DOM Element
+ * @param count Number of stars
+ * @param callback Returns selected star count to callback
+ */
+/* 
+ <i class="fa fa-star"></i>
+<i class="fa fa-star-o"></i> */
+
+function star(el, count, callback) {
+  const elem = document.querySelector(el);
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < count; i++) {
+    const icon = document.createElement("i");
+    icon.className = "fa fa-star-o";
+    fragment.appendChild(icon);
+  }
+  elem.appendChild(fragment);
+
+  elem.addEventListener("mouseover", onHover);
+  elem.addEventListener("mouseleave", onLeave);
+
+  let star = "";
+
+  function onHover(event) {
+    star = event.target;
+    if (star.tagName == "I") {
+      star.classList.replace("fa-star-o", "fa-star");
+      console.log("on hover");
+    }
+  }
+  function onLeave(event) {
+    star.classList.replace("fa-star", "fa-star-o");
+  }
+}
