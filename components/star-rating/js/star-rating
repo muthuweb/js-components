@@ -9,7 +9,6 @@
 
 function star(el, count, callback) {
   const elem = document.querySelector(el);
-  const display = document.querySelector("#display-star");
   const fragment = document.createDocumentFragment();
   let active = 0;
 
