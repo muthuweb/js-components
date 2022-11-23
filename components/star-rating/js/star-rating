@@ -4,34 +4,47 @@
  * @param count Number of stars
  * @param callback Returns selected star count to callback
  */
-/* 
- <i class="fa fa-star"></i>
-<i class="fa fa-star-o"></i> */
+
+"use strict";
 
 function star(el, count, callback) {
   const elem = document.querySelector(el);
+  const display = document.querySelector("#display-star");
   const fragment = document.createDocumentFragment();
+  let active = 0;
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 1; i <= count; i++) {
     const icon = document.createElement("i");
     icon.className = "fa fa-star-o";
+    icon.dataset.rating = i;
     fragment.appendChild(icon);
   }
   elem.appendChild(fragment);
 
   elem.addEventListener("mouseover", onHover);
-  elem.addEventListener("mouseleave", onLeave);
-
-  let star = "";
+  elem.addEventListener("mouseleave", onMouseLeave);
+  elem.addEventListener("click", onPoint);
 
   function onHover(event) {
-    star = event.target;
-    if (star.tagName == "I") {
-      star.classList.replace("fa-star-o", "fa-star");
-      console.log("on hover");
+    const rating = event.target.dataset.rating;
+    if (rating) fill(rating);
+  }
+
+  function fill(ratingValue) {
+    for (let i = 0; i < count; i++) {
+      if (i < ratingValue) {
+        elem.children[i].classList.add("fa-star");
+      } else {
+        elem.children[i].classList.remove("fa-star");
+      }
     }
   }
-  function onLeave(event) {
-    star.classList.replace("fa-star", "fa-star-o");
+  function onMouseLeave() {
+    fill(active);
+  }
+  function onPoint(event) {
+    active = event.target.dataset.rating;
+    fill(active);
+    callback(active);
   }
 }
